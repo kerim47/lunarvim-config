@@ -1,0 +1,1 @@
+-- vm.cmd([[au InsertLeave * if not vim.b.visual_multi then | silent! update | endif]])

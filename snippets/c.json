@@ -1,0 +1,229 @@
+{
+  "author": {
+    "prefix": "info",
+    "body": [
+      "/*=============================================================================",
+      " *  Author:          ${1: Abdulkerim Akan}",
+      " *  Email:           ${2: kerimakan77@gmail.com}",
+      " *  FileName:        ${3: test.c}",
+      " *  Description:     ${4: /}",
+      " *  Version:         ${5: 0.0.1}",
+      " *  History:         $6",
+      "=============================================================================*/",
+      "$7"
+    ],
+    "descriptioin": "File info"
+  },
+  "c-unittest": {
+    "prefix": "unittest",
+    "body": [
+      "#define CATCH_CONFIG_MAIN",
+      "#include \"catch.hpp\"  //git@github.com:catchorg/Catch2.git",
+      "$1",
+      "",
+      "TEST_CASE(\"$2\") {",
+      "    //set up",
+      "    $3",
+      "    //test sections",
+      "    SECTION(\"$4\") {",
+      "        $5",
+      "        REQUIRE($6)",
+      "    }",
+      "    $7",
+      "    //tear down",
+      "    $8",
+      "}"
+    ],
+    "description": "C++ unittest using catch"
+  },
+  "c-test": {
+    "prefix": "test",
+    "body": [
+      "#include <stdio.h>",
+      "$1",
+      "",
+      "int main(int argc, char *argv[])",
+      "{",
+      "  ${2:printf(\"Hello World\");}",
+      "	return 0;",
+      "}"
+    ],
+    "description": "Code snippet for main function"
+  },
+  "com": {
+    "prefix": "cm",
+    "body": [
+      "// $1"
+    ],
+    "description": "Code snippet for comment"
+  },
+  "comb": {
+    "prefix": "ck",
+    "body": [
+      "/*",
+      " * $1",
+      " */"
+    ],
+    "description": "Code snippet for comment block"
+  },
+	"for": {
+		"prefix": "for",
+		"body": [
+			"for (${size_t} ${i} = ${1:0}; ${i} < ${2:length}; ${i}++)",
+			"{",
+			"	$3",
+			"}"
+		],
+		"description": "Code snippet for 'for' loop"
+	},
+	"forr": {
+		"prefix": "forr",
+		"body": [
+			"for (int ${i} = ${1:length} - 1; ${i} >= ${2:0}; ${i}--)",
+			"{",
+			"	$3",
+			"}"
+		],
+		"description": "Code snippet for reverse 'for' loop"
+	},
+	"while": {
+		"prefix": "while",
+		"body": [
+			"while ($1)",
+			"{",
+			"	$2",
+			"}"
+		],
+		"description": ""
+	},
+	"if": {
+		"prefix": "if",
+		"body": [
+			"if ($1)",
+			"{",
+			"	$2",
+			"}"
+		],
+		"description": "Code snippet for if statement"
+	},
+	"else": {
+		"prefix": "else",
+		"body": [
+			"else",
+			"{",
+			"	$1",
+			"}"
+		],
+		"description": "Code snippet for else statement"
+	},
+	"else if": {
+		"prefix": "else if",
+		"body": [
+			"else if ($1)",
+			"{",
+			"	$2",
+			"}"
+		],
+		"description": "Code snippet for else-if statement"
+	},
+	"enum": {
+		"prefix": "enum",
+		"body": [
+			"enum ${MyEnum}",
+			"{",
+			"	$1",
+			"};"
+		],
+		"description": "Code snippet for enum"
+	},
+	"#ifdef": {
+		"prefix": "#ifdef",
+		"body": [
+			"#ifdef ${DEBUG}",
+			"$1",
+			"#endif // ${DEBUG}"
+		],
+		"description": "Code snippet for #ifdef"
+	},
+	"#ifndef": {
+		"prefix": "ndef",
+		"body": [
+			"#ifndef ${1:1}",
+			"  $2",
+			"#endif // !$1"
+		],
+		"description": "Code snippet for #ifndef"
+	},
+	"#if": {
+		"prefix": "def",
+		"body": [
+			"#ifdef ${1:0}",
+			"$2",
+			"#endif // $1"
+		],
+		"description": "Code snippet for #if"
+	},
+  "tstruct": {
+		"prefix": "Node",
+		"body": [
+			"typedef struct ${Node}",
+			"{",
+			"	$1",
+      "",
+			"}Node;"
+		],
+		"description": "Code snippet for struct"
+	},
+	"struct": {
+		"prefix": "struct",
+		"body": [
+			"struct ${MyStruct}",
+			"{",
+			"	$1",
+			"};"
+		],
+		"description": "Code snippet for struct"
+	},
+	"switch": {
+		"prefix": "switch",
+		"body": [
+			"switch (${switch_on})",
+			"{",
+			"default:",
+			"	break;$1",
+			"}"
+		],
+		"description": "Code snippet for switch statement"
+	},
+	"union": {
+		"prefix": "union",
+		"body": [
+			"union ${MyUnion}",
+			"{",
+			"	$1",
+			"};"
+		],
+		"description": "Code snippet for union"
+	},
+	"#inc": {
+		"prefix": "#inc",
+		"body": [
+			"#include \"$1\""
+		],
+		"description": "Code snippet for #include \" \""
+	},
+	"#inc<": {
+		"prefix": "#inc<",
+		"body": [
+			"#include <$1>"
+		],
+		"description": "Code snippet for #include \" \""
+	},
+	"#def": {
+		"prefix": "#def",
+		"body": [
+			"#define \"$1\" \"$2\" "
+			],
+		"description": "Code snippet for #define \" \""
+	}
+}

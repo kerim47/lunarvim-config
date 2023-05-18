@@ -1,0 +1,110 @@
+-- local set_keys= require("which-key")
+-- local key = {}
+
+-- -- Jukit plugin keymappings
+-- key["<leader>"] = {
+--   name ="General",
+--   j={
+--     name = "Jukit",
+--     s={
+--       name = "Splits",
+--       -- Yeni bir cikti penceresi acar ve `g:jukit_shell_cmd` de belirtilen komutu calistirir.  
+--       o = { "<cmd>call jukit#splits#output()<cr>", "Output" },
+--       -- Herhangi bir komut calistirmadan yeni bir cikti penceresi acar. 
+--       n = { "<cmd>call jukit#splits#term()<cr>", "New Terminal" },
+--       -- Kaydedilen ipython ciktilarinin görüntülendigi yeni bir cikti gecmisi penceresi acar.
+--       h = { "<cmd>call jukit#splits#history()<cr>", "History" },
+--       -- cikti terminali ve cikti gecmisini acmak icin kisayol. 
+--       O = { "<cmd>call jukit#splits#output_and_history()<cr>", "Output & History" },
+--       -- cikti gecmisi penceresini kapatir.
+--       d = { "<cmd>call jukit#splits#close_history()<cr>", "Close History" },
+--       -- cikti penceresini kapatir. 
+--       D = { "<cmd>call jukit#splits#close_output_split()<cr>", "Close Output" },
+--       -- Her iki pencereyi kapatir. Argüman: Kapatmadan önce onay alip almayacagi.
+--       x = { "<cmd>call jukit#splits#close_output_and_history(1)<cr>", "Close Output & History" },
+--       -- Mevcut hücrenin (gecerli imlec konumuna göre belirlenir) ciktisini cikti gecmisi penceresinde gösterir. Argüman: ciktilari yeniden yükleyip yüklememe (son görüntülenen ciktilar icin hücre kimligiyle ayni mi) konusunda karar verir.  
+--       l = { "<cmd>call jukit#splits#show_last_cell_output(1)<cr>", "Show Last Cell Output" },
+--       -- cikti gecmisi penceresinde asagi kaydirir. Argüman: Asagi (1) veya yukari (0) kaydirmak icin. 
+--       j = { "<cmd>call jukit#splits#out_hist_scroll(1)<cr>", "Scroll Down" },
+--       -- cikti gecmisi penceresinde yukari kaydirir. Argüman: Asagi (1) veya yukari (0) kaydirmak icin.  
+--       k = { "<cmd>call jukit#splits#out_hist_scroll(0)<cr>", "Scroll Up" },
+--       -- CursorHold'da kaydedilen ciktilari görüntülemek icin autocmd olusturur/siler. Ayrica `g:jukit_auto_output_hist` icin aciklamaya bakiniz.
+--       a = { "<cmd>call jukit#splits#toggle_auto_hist()<cr>", "Toggle Auto History" },
+--       -- Mevcut bölümlere (`g:jukit_layout` bakiniz) düzen uygular - NOT: Bu islevin ana dosya tamponu/bölmesinden cagrilmasi beklenir. 
+--       s = { "<cmd>call jukit#layouts#set_layout()<cr>", "Set Layout" },
+--     },
+--     b ={
+--       name = "Sending Code",
+--       -- Şu anki hücredeki kodu çıktı bölmesine gönderir (ayrıca çıktı kaydedilir ise ipython kullanıldığında ve `g:jukit_save_output==1`). Argüman: 1 ise, kodu bölümde gönderdikten sonra imleci bir sonraki hücreye taşır, aksi takdirde imleç konumu aynı kalır.
+--       b = { ":call jukit#send#section(0)<cr>", "Send code within the current cell to output split" },
+--       -- Şu anki satırı çıktı bölmesine gönderir
+--       s = { ":call jukit#send#line()<cr>", "Send current line to output split" },
+--       -- Görsel olarak seçilen kodu çıktı bölmesine gönderir
+--       e = { ":call jukit#send#until_current_section()<cr>", "Execute all cells until the current cell" },
+--       -- Şimdiki hücreye kadar olan tüm hücreleri çalıştırır
+--       a = { ":call jukit#send#all()<cr>", "Execute all cells" },
+--       -- Tüm hücreleri çalıştırır
+--       v = { ":<C-U>call jukit#send#selection()<cr>", "Send visually selected code to output split" },
+--     },
+--     t = {
+--       name = "Code Cells",
+--       -- Yeni kod hücresi oluşturmak için aşağıda komutu çalıştırın. Argüman: kod hücresi oluşturmak için (0) veya markdown hücresi oluşturmak için (1)
+--       o = { ":call jukit#cells#create_below(0)<cr>", "Create new code cell below" },
+--       -- Yeni kod hücresi oluşturmak için yukarıdaki komutu çalıştırın. Argüman: kod hücresi oluşturmak için (0) veya markdown hücresi oluşturmak için (1)
+--       O = { ":call jukit#cells#create_above(0)<cr>", "Create new code cell above" },
+--       -- Yeni metin hücresi oluşturmak için aşağıdaki komutu çalıştırın. Argüman: kod hücresi oluşturmak için (0) veya markdown hücresi oluşturmak için (1)
+--       t = { ":call jukit#cells#create_below(1)<cr>", "Create new textcell below" },
+--       -- Yeni metin hücresi oluşturmak için yukarıdaki komutu çalıştırın. Argüman: kod hücresi oluşturmak için (0) veya markdown hücresi oluşturmak için (1)
+--       T = { ":call jukit#cells#create_above(1)<cr>", "Create new textcell above" },
+--       -- Mevcut hücreyi silmek için aşağıdaki komutu çalıştırın.
+--       d = { ":call jukit#cells#delete()<cr>", "Delete current cell" },
+--       -- Mevcut hücreyi bölerek (kaydedilen çıktı daha sonra oluşan hücreye atanacak şekilde) aşağıdaki komutu çalıştırın.
+--       s = { ":call jukit#cells#split()<cr>", "Split current cell" },
+--       -- Mevcut hücreyi yukarıdaki hücre ile birleştirmek için aşağıdaki komutu çalıştırın.
+--       M = { ":call jukit#cells#merge_above()<cr>", "Merge current cell with the cell above" },
+--       -- Mevcut hücreyi aşağıdaki hücre ile birleştirmek için aşağıdaki komutu çalıştırın.
+--       m = { ":call jukit#cells#merge_below()<cr>", "Merge current cell with the cell below" },
+--       -- Mevcut hücreyi yukarı taşımak için aşağıdaki komutu çalıştırın.
+--       k = { ":call jukit#cells#move_up()<cr>", "Move current cell up" },
+--       -- Mevcut hücreyi aşağı taşımak için aşağıdaki komutu çalıştırın.
+--       j = { ":call jukit#cells#move_down()<cr>", "Move current cell down" },
+--       -- Bir sonraki hücreye atlamak için aşağıdaki komutu çalıştırın.
+--       J = { ":call jukit#cells#jump_to_next_cell()<cr>", "Jump to the next cell below" },
+--       -- Önceki hücreye atlamak için aşağıdaki komutu çalıştırın.
+--       K = { ":call jukit#cells#jump_to_previous_cell()<cr>", "Jump to the previous cell above" },
+--       -- Mevcut hücrenin kaydedilmiş çıktısını silin. Argüman: Tüm kaydedilmiş çıktıları silmek için (1) veya yalnızca mevcut hücrenin kaydedilmiş çıktısını silmek için (0)
+--       ["dd"] = { ":call jukit#cells#delete_outputs(0)<cr>", "Delete saved output of current cell" },
+--       -- Tüm hücrelerin kaydedilmiş çıktılarını sil. Argüman: Tüm kaydedilmiş çıktıları silmek için (1) veya yalnızca mevcut hücrenin kaydedilmiş çıktısını silmek için (0) seçeneği.  
+--       D = { ":call jukit#cells#delete_outputs(1)<cr>", "Delete saved outputs of all cells" },
+--     },
+--     c = {
+--       name = "Converting Notebook",
+--       -- İpynb dosyasını py dosyasına veya tersine dönüştürür. Argument: Opsiyonel. Bir argüman belirtilirse, dönüştürme işlemi sonrası oluşan ipynb dosyasını açmak için argümanın değeri kullanılır.
+--       p = { ":call jukit#convert#notebook_convert('jupyter-notebook')<cr>", "Convert from ipynb to py or vice versa" },
+--       --  Dosyayı html'e (tüm kaydedilmiş çıktılar dahil) dönüştürür ve g:jukit_html_viewer özelliğinde belirtilen komut kullanılarak açar. Eğer g:jukit_html_viewer belirtilmemişse, g:jukit_html_viewer='xdg-open' olarak varsayılır. Argümanlar: 1.: Tüm hücrelerin yeniden çalıştırılıp çalıştırılmayacağı 2.: Dönüştürme sonrası açılıp açılmayacağı 3.: Dönüştürülecek dosya türü
+--       h = { ":call jukit#convert#save_nb_to_file(0,1,'html')<cr>", "Convert file to html (including all saved outputs) and open it using the command specified in g:jukit_html_viewer" },
+--       r = {
+--         -- Yukarıdaki işleme benzer, ancak html'e dönüştürürken tüm hücreleri (yeniden) çalıştırır.
+--         h = { ":call jukit#convert#save_nb_to_file(1,1,'html')<cr>", "Same as above, but will (re-)run all cells when converting to html" },
+--         --  Dosyayı pdf'e (tüm kaydedilmiş çıktılar dahil) dönüştürür ve g:jukit_pdf_viewer özelliğinde belirtilen komut kullanılarak açar. Eğer g:jukit_pdf_viewer belirtilmemişse, g:jukit_pdf_viewer='xdg-open' olarak varsayılır. Argümanlar: 1.: Tüm hücrelerin yeniden çalıştırılıp çalıştırılmayacağı 2.: Dönüştürme sonrası açılıp açılmayacağı 3.: Dönüştürülecek dosya türü. NOT: Eğer bu fonksiyon çalışmazsa, nbconvert veya latex sürümünüzde sorunlar olabilir - hata ayıklamak için, terminalinizde jupyter nbconvert --to pdf --allow-errors --log-level='ERROR' --HTMLExporter.theme=dark </abs/path/to/ipynb> && xdg-open </abs/path/to/pdf> kullanarak pdf'e dönüştürmeyi deneyin ve olası sorunlar için çıktıyı kontrol edin
+--         p = { ":call jukit#convert#save_nb_to_file(3,1,'pdf')<cr>", "Same as above, but will (re-)run all cells when converting to pdf" },
+--       },
+--       --  Yukarıdaki işleme benzer, ancak pdf'e dönüştürürken tüm hücreleri (yeniden) çalıştırır. NOT: Eğer bu fonksiyon çalışmazsa, nbconvert veya latex sürümünüzde sorunlar olabilir - hata ayıkla
+--       d = { ":call jukit#convert#save_nb_to_file(0,1,'pdf')<cr>", "Convert file to pdf (including all saved outputs) and open it using the command specified in g:jukit_pdf_viewer" },
+--     }
+--   },
+--   a = {"gg0<s-v>G$", "Select All"},
+--   ["ns"] = {":ASToggle<CR>", "Auto Save"},
+--   ["-"] = {":TagbarToggle<cr>", "Function Tagbar"},
+--   ["vl"] = {"<C-w>h", "Jump Right Window"},
+--   ["vh"] = {"<C-w>l", "Jump Left Window"}
+-- }
+--   key["r"] = {
+--     name = "Fold",
+--     R = { ":lua require('ufo').openAllFolds<CR>", "Open All Folds" },
+--     M = { ":lua require('ufo').closeAllFolds<CR>", "Close All Folds" },
+--     r = { ":lua require('ufo').openFoldsExceptKinds<CR>", "Open Folds Except Kinds" },
+--     m = { ":lua require('ufo').closeFoldsWith<CR>", "Close Folds With" }
+-- }
+
+-- set_keys.register(key)
