@@ -45,9 +45,10 @@ Yapılandırmalar çoğunlukla `C, C++, Python, Jupyter, Markdown, lua, bash` vb
 ### İndirme
 
 ```sh
+$ cd ~
 $ git clone https://github.com/kerim47/lunarvim-config
-$ mkdir -p /home/kerim/.config/lvim
-$ cp ~/lunarvim-config ~/.config/lvim
+$ mkdir -p ~/.config/lvim
+$ cp -r lunarvim-config ~/.config/lvim
 ```
 Eğer herhangi bir konuda sıkıntı yaşıyorsanız lutfen sormaktan çekinmeyin.
 
