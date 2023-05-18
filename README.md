@@ -102,7 +102,7 @@ Eğer herhangi bir konuda sıkıntı yaşıyorsanız lutfen sormaktan çekinmeyi
 
 
 
-## Fontlar (iste─şe ba─şl─▒) Fonts (Optional)
+## Fontlar (isteğe bağlı) Fonts (Optional)
 
 - [A nerd font](https://github.com/ryanoasis/nerd-fonts)
 
